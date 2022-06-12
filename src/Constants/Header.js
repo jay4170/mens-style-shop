@@ -7,11 +7,17 @@ import basket from "../Media/shopping_bag_FILL0_wght100_GRAD200_opsz48.png";
 const Header = () => {
   return (
     <div className="flex justify-between bg-cyan-50 ">
-      <img className="h-9" alt="DAVE on grey background" src={logo}></img>
+      <a href="/">
+        <img className="h-10" alt="DAVE on grey background" src={logo}></img>
+      </a>
       <div className="flex justify-between">
-        <img className="h-9" alt="Search" src={search}></img>
-        <img className="h-9" alt="Favourites" src={favourites}></img>
-        <img className="h-9" alt="baket" src={basket}></img>
+        <a href="/shop">
+          <img className="h-10" alt="Search" src={search}></img>
+        </a>
+        <img className="h-10" alt="Favourites" src={favourites}></img>
+        <a href="/basket">
+          <img className="h-10" alt="basket" src={basket}></img>
+        </a>
       </div>
     </div>
   );
