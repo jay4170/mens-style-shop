@@ -9,37 +9,52 @@ import Basket from "./Basket/Basket";
 
 const RouteSwitch = () => {
   const [products, setProducts] = useState([]);
-
+  const [isOpen, setIsOpen] = useState(false);
   const [trolley, setTrolley] = useState([]);
-
   // const APICall = () => {
-  //   fetch("https://fakestoreapi.com/products?limit=5")
+  //   fetch("https://fakestoreapi.com/products")
   //     .then((res) => res.json())
   //     .then((json) => {
-  //       setProducts(json);
+  //       console.log(json);
   //     });
   // };
   useEffect(() => {
     setProducts(fakeAPIcall());
-    setTrolley(fakeAPIcall());
-    //   setProducts(APICall());
+    // setTrolley(fakeAPIcall());
+    //  setProducts(APICall());
   }, []);
 
   useEffect(() => {
-    console.log("Updated Products with ");
-    console.log(products);
+    // console.log("Updated Products with ");
+    // console.log(products);
   }, [products]);
 
-  //on clicking the add to basket, store the object in a new array
-  //basket icon show number basket.len
+  const handleFilterOpening = () => {
+    console.log("handling open");
+    console.log(isOpen);
+    setIsOpen((prev) => !prev);
+  };
+  const handleBasketUpdate = (product) => {
+    let tempTrolley = trolley;
+    tempTrolley.push(product);
+    setTrolley(tempTrolley);
+  };
 
   return (
     <BrowserRouter>
-      <Header trolley={trolley.length} />
-      <Basket trolley={trolley}/>
+      <Header
+        trolley={trolley.length}
+        handleFilterOpening={handleFilterOpening}
+      />
+      <Basket trolley={trolley} isOpen={isOpen} />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<Shop products={products} />} />
+        <Route
+          path="/shop"
+          element={
+            <Shop products={products} handleBasketUpdate={handleBasketUpdate} />
+          }
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
