@@ -35,15 +35,13 @@ const RouteSwitch = () => {
     setIsOpen((prev) => !prev);
   };
   const handleBasketUpdate = (product) => {
-    let tempTrolley = trolley;
-    tempTrolley.push(product);
-    setTrolley(tempTrolley);
+        setTrolley([...trolley,product]);
   };
 
   return (
     <BrowserRouter>
       <Header
-        trolley={trolley.length}
+        trolley={trolley}
         handleFilterOpening={handleFilterOpening}
       />
       <Basket trolley={trolley} isOpen={isOpen} />

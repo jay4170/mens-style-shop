@@ -7,6 +7,7 @@ import basketImg from "../Media/shopping_bag_FILL0_wght100_GRAD200_opsz48.png";
 const Header = (props) => {
   const handleFilterOpening = props.handleFilterOpening;
   console.log("HEader updating");
+  console.log(props.trolley.length)
   return (
     <div className="flex justify-between bg-cyan-50 ">
       <a href="/">
@@ -18,10 +19,15 @@ const Header = (props) => {
         </a>
         {/* <img className="h-10" alt="Favourites" src={favourites}></img> */}
         <div onClick={handleFilterOpening}>
+
+
+
           <img className="h-10" alt="basket" src={basketImg}></img>
-          {props.trolley > 0 && (
+
+
+          {props.trolley.length > 0 && (
             <p className="absolute h-7 top-5 right-6 text-cyan-50 font-display text-lg bg-red-500 rounded-full px-1">
-              {props.trolley}
+              {props.trolley.length}
             </p>
           )}
         </div>
