@@ -8,10 +8,12 @@ import fakeAPIcall from "./fakeApiCall";
 import Basket from "./Basket/Basket";
 
 const RouteSwitch = () => {
-  const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [trolley, setTrolley] = useState([]);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchTyping, setSearchTyping] = useState("");
+  const [allFilteredProducts, setAllFilteredProducts] = useState([]);
 
   ///If the search icon is clicked set state to open and display search bar
   ///If anywhere on the page is clicked, hide open search bar
@@ -24,6 +26,15 @@ const RouteSwitch = () => {
       handleSearchOpening();
     }
   };
+  const handleSearchSubmit = () => {
+    console.log(searchTyping);
+  };
+  // ///do it in here
+  // useEffect(() => {
+  //   console.log("search typing - " + searchTyping);
+  //   const filterableArray = allProducts.filter((product) => product.id === 1);
+  //   setAllFilteredProducts();
+  // }, [searchTyping]);
 
   // //Fetch from fakestoreapi
   // const APICall = () => {
@@ -39,10 +50,12 @@ const RouteSwitch = () => {
   // console.log(APICall());
 
   useEffect(() => {
-    setProducts(fakeAPIcall());
+    setAllProducts(fakeAPIcall());
   }, []);
 
-  useEffect(() => {}, [products]);
+  useEffect(() => {
+    console.log("products updated");
+  }, [allProducts]);
 
   const handleFilterOpening = () => {
     setIsOpen((prev) => !prev);
@@ -66,6 +79,9 @@ const RouteSwitch = () => {
   return (
     <BrowserRouter>
       <Header
+        handleSearch={handleSearchSubmit}
+        searchTyping={searchTyping}
+        setSearchTyping={setSearchTyping}
         searchOpen={searchOpen}
         trolley={trolley}
         handleSearchOpening={handleSearchOpening}
@@ -79,7 +95,7 @@ const RouteSwitch = () => {
             path="/shop"
             element={
               <Shop
-                products={products}
+                allProducts={allProducts}
                 handleBasketUpdate={handleBasketUpdate}
               />
             }

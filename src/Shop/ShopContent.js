@@ -1,12 +1,12 @@
 import React from "react";
 
 export default function ShopContent(props) {
-  const products = props.products;
+  const allProducts = props.allProducts;
   const handleBasketUpdate = props.handleBasketUpdate;
 
   return (
     <ul className="grid grid-cols-1 : sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ">
-      {products.map((product) => {
+      {allProducts.map((product) => {
         return (
           <div key={product.id} className="text-center ">
             <li className="justify-center ">

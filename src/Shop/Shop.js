@@ -2,7 +2,7 @@ import React from "react";
 import ShopContent from "./ShopContent";
 
 const Shop = (props) => {
-  const products = props.products;
+  const allProducts = props.allProducts;
 
   return (
     <div className=" grid col-1 justify-center ">
@@ -11,7 +11,7 @@ const Shop = (props) => {
       </h1>
       <div className="h-24"></div>
       <ShopContent
-        products={products}
+        allProducts={allProducts}
         handleBasketUpdate={props.handleBasketUpdate}
       />
     </div>

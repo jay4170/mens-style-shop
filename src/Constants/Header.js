@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logo from "../Media/Component 1 (3).png";
 import search from "../Media/search_FILL0_wght100_GRAD200_opsz48.png";
 // import favourites from "../Media/favorite_FILL0_wght100_GRAD200_opsz48.png";
@@ -8,10 +8,12 @@ const Header = (props) => {
   const handleFilterOpening = props.handleFilterOpening;
   const handleSearchOpening = props.handleSearchOpening;
   const searchOpen = props.searchOpen;
-  const [typing, setTyping] = useState("");
+  const searchTyping = props.searchTyping;
+  const setSearchTyping = props.setSearchTyping;
+  const handleSearchSubmit = props.handleSearchSubmit;
 
   const typingHandler = (e) => {
-    setTyping(e.target.value);
+    setSearchTyping(e.target.value);
   };
 
   return (
@@ -25,7 +27,7 @@ const Header = (props) => {
         {/* hidden search icon and bar*/}
         {searchOpen && (
           <div className="flex">
-            {typing === "" && (
+            {searchTyping === "" && (
               <img
                 onClick={handleSearchOpening}
                 className="h-10 border-solid fixed float-right"
@@ -33,11 +35,15 @@ const Header = (props) => {
                 src={search}
               ></img>
             )}
-            <input
-              className="h-10 border-2  border-cyan-200 bg-cyan-50"
-              type="text"
-              onChange={typingHandler}
-            ></input>
+
+            <form onSubmit={handleSearchSubmit} action="/shop">
+              <input
+                className="h-10 border-2  border-cyan-200 bg-cyan-50"
+                type="text"
+                value={searchTyping}
+                onChange={typingHandler}
+              ></input>
+            </form>
           </div>
         )}
 
