@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../Media/Component 1 (3).png";
 import search from "../Media/search_FILL0_wght100_GRAD200_opsz48.png";
 // import favourites from "../Media/favorite_FILL0_wght100_GRAD200_opsz48.png";
@@ -6,25 +6,55 @@ import basketImg from "../Media/shopping_bag_FILL0_wght100_GRAD200_opsz48.png";
 
 const Header = (props) => {
   const handleFilterOpening = props.handleFilterOpening;
-  console.log("HEader updating");
-  console.log(props.trolley.length)
+  const handleSearchOpening = props.handleSearchOpening;
+  const searchOpen = props.searchOpen;
+  const [typing, setTyping] = useState("");
+
+  const typingHandler = (e) => {
+    setTyping(e.target.value);
+  };
+
   return (
-    <div className="flex justify-between bg-cyan-50 ">
+    <div className="flex justify-between  ">
+      {/* Logo */}
       <a href="/">
         <img className="h-10" alt="DAVE on grey background" src={logo}></img>
       </a>
+
       <div className="flex justify-between">
-        <a href="/shop">
-          <img className="h-10" alt="Search" src={search}></img>
-        </a>
-        {/* <img className="h-10" alt="Favourites" src={favourites}></img> */}
+        {/* hidden search icon and bar*/}
+        {searchOpen && (
+          <div className="flex">
+            {typing === "" && (
+              <img
+                onClick={handleSearchOpening}
+                className="h-10 border-solid fixed float-right"
+                alt="Search"
+                src={search}
+              ></img>
+            )}
+            <input
+              className="h-10 border-2  border-cyan-200 bg-cyan-50"
+              type="text"
+              onChange={typingHandler}
+            ></input>
+          </div>
+        )}
+
+        {/* Not hidden search icon */}
+        {!searchOpen && (
+          <div>
+            <img
+              onClick={handleSearchOpening}
+              className="h-10"
+              alt="Search"
+              src={search}
+            ></img>
+          </div>
+        )}
+        {/* Cart  */}
         <div onClick={handleFilterOpening}>
-
-
-
           <img className="h-10" alt="basket" src={basketImg}></img>
-
-
           {props.trolley.length > 0 && (
             <p className="absolute h-7 top-5 right-6 text-cyan-50 font-display text-lg bg-red-500 rounded-full px-1">
               {props.trolley.length}

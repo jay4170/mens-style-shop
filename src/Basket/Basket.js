@@ -3,7 +3,7 @@ import React from "react";
 const Basket = (props) => {
   const trolley = props.trolley;
   const isOpen = props.isOpen;
-
+  const setTrolley = props.setTrolley;
   if (isOpen) {
     if (trolley.length === 0) {
       return (
@@ -35,7 +35,12 @@ const Basket = (props) => {
             <button className="btn bg-cyan-100 rounded-full w-1/3">
               CHECKOUT
             </button>
-            <button className="btn bg-cyan-100 rounded-full w-1/3">
+            <button
+              onClick={() => {
+                setTrolley([]);
+              }}
+              className="btn bg-cyan-100 rounded-full w-1/3"
+            >
               CLEAR
             </button>
           </div>

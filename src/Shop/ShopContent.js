@@ -16,12 +16,13 @@ export default function ShopContent(props) {
                 src={product.image}
               ></img>
               <button
+                className="font-display text-sm bg-cyan-50"
                 onClick={() => {
                   console.log(product);
                   handleBasketUpdate(product);
                 }}
               >
-                Click to add
+                ADD TO BASKET
               </button>
               <h3 className="px-10 m-1 text-sm lg:text-lg font-display text-cyan-800">
                 {product.title}

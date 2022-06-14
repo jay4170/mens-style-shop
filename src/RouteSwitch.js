@@ -11,27 +11,40 @@ const RouteSwitch = () => {
   const [products, setProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [trolley, setTrolley] = useState([]);
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  ///If the search icon is clicked set state to open and display search bar
+  ///If anywhere on the page is clicked, hide open search bar
+  const handleSearchOpening = () => {
+    setSearchOpen((prev) => !prev);
+    console.log(searchOpen);
+  };
+  const closeSearch = () => {
+    if (searchOpen) {
+      handleSearchOpening();
+    }
+  };
+
+  // //Fetch from fakestoreapi
   // const APICall = () => {
+  //   let tempItems = [];
+
   //   fetch("https://fakestoreapi.com/products")
   //     .then((res) => res.json())
   //     .then((json) => {
-  //       console.log(json);
+  //       tempItems = json;
   //     });
+  //   console.log(tempItems);
   // };
+  // console.log(APICall());
+
   useEffect(() => {
     setProducts(fakeAPIcall());
-    // setTrolley(fakeAPIcall());
-    //  setProducts(APICall());
   }, []);
 
-  useEffect(() => {
-    // console.log("Updated Products with ");
-    // console.log(products);
-  }, [products]);
+  useEffect(() => {}, [products]);
 
   const handleFilterOpening = () => {
-    console.log("handling open");
-    console.log(isOpen);
     setIsOpen((prev) => !prev);
   };
 
@@ -48,31 +61,31 @@ const RouteSwitch = () => {
       tempSearch.quantity++;
       setTrolley([...tempTrolley]);
     }
-
-    //receive product request
-    //if not already in basket
-    //add to basket
-    //set new param of quantity to 1
-    //
-    //if in basket
-    //find the item
-    //set its quantity to ++
-    //
   };
 
   return (
     <BrowserRouter>
-      <Header trolley={trolley} handleFilterOpening={handleFilterOpening} />
-      <Basket trolley={trolley} isOpen={isOpen} />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route
-          path="/shop"
-          element={
-            <Shop products={products} handleBasketUpdate={handleBasketUpdate} />
-          }
-        />
-      </Routes>
+      <Header
+        searchOpen={searchOpen}
+        trolley={trolley}
+        handleSearchOpening={handleSearchOpening}
+        handleFilterOpening={handleFilterOpening}
+      />
+      <Basket trolley={trolley} setTrolley={setTrolley} isOpen={isOpen} />
+      <div onClick={closeSearch}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/shop"
+            element={
+              <Shop
+                products={products}
+                handleBasketUpdate={handleBasketUpdate}
+              />
+            }
+          />
+        </Routes>
+      </div>
       <Footer />
     </BrowserRouter>
   );

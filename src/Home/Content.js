@@ -7,7 +7,7 @@ import shirt from "../Media/pexels-monstera-5384423.jpg";
 const Content = () => {
   return (
     <div className="grid  mx-10 gap-4 justify-items-center ">
-      <BannerImages src={clothingRail} text={"Full Collection"} />
+      <BannerImages src={clothingRail}text={"Full Collection"} />
       <BannerImages src={fatherDay} text={"Fathers Day"} />
       <BannerImages src={jewel} text={"Jewelry"} />
       <BannerImages src={shirt} text={"Designer T-Shirts"} />

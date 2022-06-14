@@ -1,0 +1,3 @@
+//increment basket items from basket
+//clear individual items from basket
+//get a search function working
