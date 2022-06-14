@@ -34,16 +34,35 @@ const RouteSwitch = () => {
     console.log(isOpen);
     setIsOpen((prev) => !prev);
   };
+
   const handleBasketUpdate = (product) => {
-        setTrolley([...trolley,product]);
+    let search = trolley.find((x) => x.id === product.id);
+
+    if (search === undefined) {
+      console.log("New Item");
+      setTrolley([...trolley, { ...product, quantity: 1 }]);
+    } else {
+      console.log("else");
+      let tempTrolley = [...trolley];
+      let tempSearch = tempTrolley.find((x) => x.id === product.id);
+      tempSearch.quantity++;
+      setTrolley([...tempTrolley]);
+    }
+
+    //receive product request
+    //if not already in basket
+    //add to basket
+    //set new param of quantity to 1
+    //
+    //if in basket
+    //find the item
+    //set its quantity to ++
+    //
   };
 
   return (
     <BrowserRouter>
-      <Header
-        trolley={trolley}
-        handleFilterOpening={handleFilterOpening}
-      />
+      <Header trolley={trolley} handleFilterOpening={handleFilterOpening} />
       <Basket trolley={trolley} isOpen={isOpen} />
       <Routes>
         <Route path="/" element={<HomePage />} />

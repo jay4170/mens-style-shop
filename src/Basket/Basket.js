@@ -22,7 +22,12 @@ const Basket = (props) => {
                 className="grid grid-cols-2 justify-center content-center"
               >
                 <img src={item.image} alt="" />
-                <h2 className="font-display">{item.title}</h2>
+                <div>
+                  <h2 className="font-display">{item.title}</h2>
+                  {item.quantity && (
+                    <h2 className="font-display">{item.quantity}</h2>
+                  )}
+                </div>
               </div>
             );
           })}
