@@ -19,7 +19,6 @@ const RouteSwitch = () => {
   ///If anywhere on the page is clicked, hide open search bar
   const handleSearchOpening = () => {
     setSearchOpen((prev) => !prev);
-    console.log(searchOpen);
   };
   const closeSearch = () => {
     if (searchOpen) {
@@ -29,33 +28,26 @@ const RouteSwitch = () => {
   const handleSearchSubmit = () => {
     console.log(searchTyping);
   };
-  // ///do it in here
-  // useEffect(() => {
-  //   console.log("search typing - " + searchTyping);
-  //   const filterableArray = allProducts.filter((product) => product.id === 1);
-  //   setAllFilteredProducts();
-  // }, [searchTyping]);
-
-  // //Fetch from fakestoreapi
-  // const APICall = () => {
-  //   let tempItems = [];
-
-  //   fetch("https://fakestoreapi.com/products")
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       tempItems = json;
-  //     });
-  //   console.log(tempItems);
-  // };
-  // console.log(APICall());
+  // ///Filter products array based on the current value of searchTyping
+  useEffect(() => {
+    let tempArray = [...allProducts];
+    let otherTempArray = [];
+    tempArray.forEach((product) => {
+      if (
+        product.title.toUpperCase().indexOf(searchTyping.toUpperCase()) > -1
+      ) {
+        otherTempArray.push(product);
+      }
+    });
+    setAllFilteredProducts(otherTempArray);
+  }, [searchTyping]);
 
   useEffect(() => {
+    setAllFilteredProducts(fakeAPIcall());
     setAllProducts(fakeAPIcall());
   }, []);
 
-  useEffect(() => {
-    console.log("products updated");
-  }, [allProducts]);
+ 
 
   const handleFilterOpening = () => {
     setIsOpen((prev) => !prev);
@@ -65,10 +57,8 @@ const RouteSwitch = () => {
     let search = trolley.find((x) => x.id === product.id);
 
     if (search === undefined) {
-      console.log("New Item");
       setTrolley([...trolley, { ...product, quantity: 1 }]);
     } else {
-      console.log("else");
       let tempTrolley = [...trolley];
       let tempSearch = tempTrolley.find((x) => x.id === product.id);
       tempSearch.quantity++;
@@ -95,7 +85,7 @@ const RouteSwitch = () => {
             path="/shop"
             element={
               <Shop
-                allProducts={allProducts}
+                allProducts={allFilteredProducts}
                 handleBasketUpdate={handleBasketUpdate}
               />
             }
