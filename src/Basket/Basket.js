@@ -7,6 +7,7 @@ const Basket = (props) => {
   const handleBasketRemoval = props.handleBasketRemoval;
   const handleBasketDecrement = props.handleBasketDecrement;
   const handleBasketIncrement = props.handleBasketIncrement;
+  const trolleyValue = props.trolleyValue;
 
   if (isOpen) {
     if (trolley.length === 0) {
@@ -28,7 +29,7 @@ const Basket = (props) => {
                 <img src={item.image} alt="" />
                 <div>
                   <h2 className="font-display">{item.title}</h2>
-                  <h2 className="font-display">{`Each £ ${item.price}`}</h2>
+                  <h2 className="font-display">{`Each £ ${item.price.toFixed(2)}`}</h2>
                   <div className="flex">
                     <button
                       onClick={() => {
@@ -61,6 +62,7 @@ const Basket = (props) => {
               </div>
             );
           })}
+          <div>Total Basket Value: £{trolleyValue.toFixed(2)}</div>
           <div className="flex space-x-4 justify-center ">
             <button className="btn bg-cyan-100 rounded-full w-1/3">
               CHECKOUT

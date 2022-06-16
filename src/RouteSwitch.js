@@ -95,7 +95,7 @@ const RouteSwitch = () => {
     setTrolley([...tempTrolley]);
   };
   const handleBasketDecrement = (product) => {
-    if (product.quantity-1 === 0) {
+    if (product.quantity - 1 === 0) {
       handleBasketRemoval(product);
     } else {
       let tempTrolley = [...trolley];
@@ -120,6 +120,7 @@ const RouteSwitch = () => {
       <Basket
         trolley={trolley}
         handleBasketRemoval={handleBasketRemoval}
+        trolleyValue={basketValue.value}
         setTrolley={setTrolley}
         isOpen={isOpen}
         handleBasketIncrement={handleBasketIncrement}
