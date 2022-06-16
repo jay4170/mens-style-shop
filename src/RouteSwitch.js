@@ -83,8 +83,27 @@ const RouteSwitch = () => {
   const handleBasketRemoval = (product) => {
     let tempTrolley = [...trolley];
     let search = tempTrolley.findIndex((x) => x.id === product.id);
-    tempTrolley.splice(search,1);
+    tempTrolley.splice(search, 1);
     setTrolley([...tempTrolley]);
+  };
+
+  const handleBasketIncrement = (product) => {
+    let tempTrolley = [...trolley];
+    let search = tempTrolley.findIndex((x) => x.id === product.id);
+    console.log(product);
+    tempTrolley[search].quantity++;
+    setTrolley([...tempTrolley]);
+  };
+  const handleBasketDecrement = (product) => {
+    if (product.quantity-1 === 0) {
+      handleBasketRemoval(product);
+    } else {
+      let tempTrolley = [...trolley];
+      let search = tempTrolley.findIndex((x) => x.id === product.id);
+
+      tempTrolley[search].quantity--;
+      setTrolley([...tempTrolley]);
+    }
   };
 
   return (
@@ -103,6 +122,8 @@ const RouteSwitch = () => {
         handleBasketRemoval={handleBasketRemoval}
         setTrolley={setTrolley}
         isOpen={isOpen}
+        handleBasketIncrement={handleBasketIncrement}
+        handleBasketDecrement={handleBasketDecrement}
       />
       <div onClick={closeOpenTabs}>
         <Routes>
