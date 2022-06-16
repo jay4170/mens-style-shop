@@ -4,6 +4,7 @@ const Basket = (props) => {
   const trolley = props.trolley;
   const isOpen = props.isOpen;
   const setTrolley = props.setTrolley;
+  const handleBasketRemoval = props.handleBasketRemoval;
   if (isOpen) {
     if (trolley.length === 0) {
       return (
@@ -24,9 +25,15 @@ const Basket = (props) => {
                 <img src={item.image} alt="" />
                 <div>
                   <h2 className="font-display">{item.title}</h2>
-                  {item.quantity && (
-                    <h2 className="font-display">{item.quantity}</h2>
-                  )}
+                  <h2 className="font-display">{item.quantity}</h2>
+                  <h2 className="font-display">{`Each £ ${item.price}`}</h2>
+                  <h2
+                    onClick={() => {
+                      handleBasketRemoval(item);
+                    }}
+                  >
+                    Remove
+                  </h2>
                 </div>
               </div>
             );

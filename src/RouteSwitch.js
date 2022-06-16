@@ -80,6 +80,12 @@ const RouteSwitch = () => {
       setTrolley([...tempTrolley]);
     }
   };
+  const handleBasketRemoval = (product) => {
+    let tempTrolley = [...trolley];
+    let search = tempTrolley.findIndex((x) => x.id === product.id);
+    tempTrolley.splice(search,1);
+    setTrolley([...tempTrolley]);
+  };
 
   return (
     <BrowserRouter>
@@ -92,7 +98,12 @@ const RouteSwitch = () => {
         handleSearchOpening={handleSearchOpening}
         handleFilterOpening={handleFilterOpening}
       />
-      <Basket trolley={trolley} setTrolley={setTrolley} isOpen={isOpen} />
+      <Basket
+        trolley={trolley}
+        handleBasketRemoval={handleBasketRemoval}
+        setTrolley={setTrolley}
+        isOpen={isOpen}
+      />
       <div onClick={closeOpenTabs}>
         <Routes>
           <Route path="/" element={<HomePage />} />

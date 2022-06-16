@@ -4,7 +4,6 @@ export default function ShopContent(props) {
   const allProducts = props.allProducts;
   const handleBasketUpdate = props.handleBasketUpdate;
   return (
-    
     <ul className="grid grid-cols-1 : sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ">
       {allProducts.length === 0 && <h2>No records match your search</h2>}
       {allProducts.map((product) => {
