@@ -24,6 +24,7 @@ const trolleyQuantity =props.trolleyQuantity
       </a>
 
       <div className="flex justify-between">
+        
         {/* hidden search icon and bar*/}
         {searchOpen && (
           <div className="flex">
@@ -36,13 +37,13 @@ const trolleyQuantity =props.trolleyQuantity
               ></img>
             )}
 
-            <form onSubmit={searchTyping} action="/shop">
+            <form onSubmit={handleSearchSubmit} action="/shop">
               <input
                 className="h-10 border-2  border-cyan-200 bg-cyan-50"
                 type="text"
                 value={searchTyping}
                 onChange={typingHandler}
-                onSubmit={searchTyping}
+                onSubmit={handleSearchSubmit}
               ></input>
             </form>
           </div>

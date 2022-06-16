@@ -99,7 +99,6 @@ const RouteSwitch = () => {
   //Filter products array based on the current value of searchTyping
   ///update basket with the total items placed in it
   useEffect(() => {
-    console.log(allProducts);
     let tempArray = [...allProducts];
     let otherTempArray = [];
     tempArray.forEach((product) => {
