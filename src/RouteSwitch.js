@@ -16,12 +16,19 @@ const RouteSwitch = () => {
   const [allFilteredProducts, setAllFilteredProducts] = useState([]);
   const [basketValue, setBasketValue] = useState({ quantity: 0, value: 0 });
 
+  //Call fake api for the website contents
+  useEffect(() => {
+    setAllFilteredProducts(fakeAPIcall());
+    setAllProducts(fakeAPIcall());
+  }, []);
+
   ///If the search icon is clicked set state to open and display search bar
   ///If anywhere on the page is clicked, hide open search bar
   const handleSearchOpening = () => {
     setSearchOpen((prev) => !prev);
   };
 
+  //Function to close the basket and search tabs
   const closeOpenTabs = () => {
     if (searchOpen) {
       handleSearchOpening();
@@ -30,24 +37,12 @@ const RouteSwitch = () => {
       handleFilterOpening();
     }
   };
-  const handleSearchSubmit = () => {
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
     console.log(searchTyping);
   };
-  // ///Filter products array based on the current value of searchTyping
-  useEffect(() => {
-    let tempArray = [...allProducts];
-    let otherTempArray = [];
-    tempArray.forEach((product) => {
-      if (
-        product.title.toUpperCase().indexOf(searchTyping.toUpperCase()) > -1
-      ) {
-        otherTempArray.push(product);
-      }
-    });
-    setAllFilteredProducts(otherTempArray);
-  }, [searchTyping]);
 
-  ///update basket with the total items placed in it
   useEffect(() => {
     let basketTotalQuantity = 0;
     let basketTotalValue = 0;
@@ -58,11 +53,6 @@ const RouteSwitch = () => {
 
     setBasketValue({ quantity: basketTotalQuantity, value: basketTotalValue });
   }, [trolley]);
-
-  useEffect(() => {
-    setAllFilteredProducts(fakeAPIcall());
-    setAllProducts(fakeAPIcall());
-  }, []);
 
   const handleFilterOpening = () => {
     setIsOpen((prev) => !prev);
@@ -105,6 +95,22 @@ const RouteSwitch = () => {
       setTrolley([...tempTrolley]);
     }
   };
+
+  //Filter products array based on the current value of searchTyping
+  ///update basket with the total items placed in it
+  useEffect(() => {
+    console.log(allProducts);
+    let tempArray = [...allProducts];
+    let otherTempArray = [];
+    tempArray.forEach((product) => {
+      if (
+        product.title.toUpperCase().indexOf(searchTyping.toUpperCase()) > -1
+      ) {
+        otherTempArray.push(product);
+      }
+    });
+    setAllFilteredProducts(otherTempArray);
+  }, [searchTyping, allProducts]);
 
   return (
     <BrowserRouter>

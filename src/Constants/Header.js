@@ -36,12 +36,13 @@ const trolleyQuantity =props.trolleyQuantity
               ></img>
             )}
 
-            <form onSubmit={handleSearchSubmit} action="/shop">
+            <form onSubmit={searchTyping} action="/shop">
               <input
                 className="h-10 border-2  border-cyan-200 bg-cyan-50"
                 type="text"
                 value={searchTyping}
                 onChange={typingHandler}
+                onSubmit={searchTyping}
               ></input>
             </form>
           </div>
