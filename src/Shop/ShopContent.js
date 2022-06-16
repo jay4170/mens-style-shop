@@ -19,7 +19,6 @@ export default function ShopContent(props) {
               <button
                 className="font-display text-sm bg-cyan-50"
                 onClick={() => {
-                  console.log(product);
                   handleBasketUpdate(product);
                 }}
               >

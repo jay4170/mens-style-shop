@@ -1,3 +1,7 @@
 //increment basket items from basket
+//basket to display quanitity
 //clear individual items from basket
-//get a search function working
+//when clicking add to basket pop up with a quantity checker
+//get a search function when submitting form
+//prices in cart
+//total prices of cart

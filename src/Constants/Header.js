@@ -11,7 +11,7 @@ const Header = (props) => {
   const searchTyping = props.searchTyping;
   const setSearchTyping = props.setSearchTyping;
   const handleSearchSubmit = props.handleSearchSubmit;
-
+const trolleyQuantity =props.trolleyQuantity
   const typingHandler = (e) => {
     setSearchTyping(e.target.value);
   };
@@ -61,9 +61,9 @@ const Header = (props) => {
         {/* Cart  */}
         <div onClick={handleFilterOpening}>
           <img className="h-10" alt="basket" src={basketImg}></img>
-          {props.trolley.length > 0 && (
+          {trolleyQuantity > 0 && (
             <p className="absolute h-7 top-5 right-6 text-cyan-50 font-display text-lg bg-red-500 rounded-full px-1">
-              {props.trolley.length}
+              {trolleyQuantity}
             </p>
           )}
         </div>

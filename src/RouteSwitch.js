@@ -14,15 +14,20 @@ const RouteSwitch = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTyping, setSearchTyping] = useState("");
   const [allFilteredProducts, setAllFilteredProducts] = useState([]);
+  const [basketValue, setBasketValue] = useState({ quantity: 0, value: 0 });
 
   ///If the search icon is clicked set state to open and display search bar
   ///If anywhere on the page is clicked, hide open search bar
   const handleSearchOpening = () => {
     setSearchOpen((prev) => !prev);
   };
-  const closeSearch = () => {
+
+  const closeOpenTabs = () => {
     if (searchOpen) {
       handleSearchOpening();
+    }
+    if (isOpen) {
+      handleFilterOpening();
     }
   };
   const handleSearchSubmit = () => {
@@ -42,12 +47,22 @@ const RouteSwitch = () => {
     setAllFilteredProducts(otherTempArray);
   }, [searchTyping]);
 
+  ///update basket with the total items placed in it
+  useEffect(() => {
+    let basketTotalQuantity = 0;
+    let basketTotalValue = 0;
+    trolley.forEach((product) => {
+      basketTotalQuantity = basketTotalQuantity + product.quantity;
+      basketTotalValue = basketTotalValue + product.price * product.quantity;
+    });
+
+    setBasketValue({ quantity: basketTotalQuantity, value: basketTotalValue });
+  }, [trolley]);
+
   useEffect(() => {
     setAllFilteredProducts(fakeAPIcall());
     setAllProducts(fakeAPIcall());
   }, []);
-
- 
 
   const handleFilterOpening = () => {
     setIsOpen((prev) => !prev);
@@ -73,12 +88,12 @@ const RouteSwitch = () => {
         searchTyping={searchTyping}
         setSearchTyping={setSearchTyping}
         searchOpen={searchOpen}
-        trolley={trolley}
+        trolleyQuantity={basketValue.quantity}
         handleSearchOpening={handleSearchOpening}
         handleFilterOpening={handleFilterOpening}
       />
       <Basket trolley={trolley} setTrolley={setTrolley} isOpen={isOpen} />
-      <div onClick={closeSearch}>
+      <div onClick={closeOpenTabs}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
