@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import HomePage from "./Home/HomePage";
 import Shop from "./Shop/Shop";
 import Header from "./Constants/Header";
@@ -112,7 +112,7 @@ const RouteSwitch = () => {
   }, [searchTyping, allProducts]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header
         handleSearch={handleSearchSubmit}
         searchTyping={searchTyping}
@@ -133,7 +133,7 @@ const RouteSwitch = () => {
       />
       <div onClick={closeOpenTabs}>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="" element={<HomePage />} />
           <Route
             path="/shop"
             element={
@@ -146,7 +146,7 @@ const RouteSwitch = () => {
         </Routes>
       </div>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

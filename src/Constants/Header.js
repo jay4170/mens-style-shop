@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../Media/Component 1 (3).png";
 import search from "../Media/search_FILL0_wght100_GRAD200_opsz48.png";
 // import favourites from "../Media/favorite_FILL0_wght100_GRAD200_opsz48.png";
@@ -11,7 +12,7 @@ const Header = (props) => {
   const searchTyping = props.searchTyping;
   const setSearchTyping = props.setSearchTyping;
   const handleSearchSubmit = props.handleSearchSubmit;
-const trolleyQuantity =props.trolleyQuantity
+  const trolleyQuantity = props.trolleyQuantity;
   const typingHandler = (e) => {
     setSearchTyping(e.target.value);
   };
@@ -19,12 +20,11 @@ const trolleyQuantity =props.trolleyQuantity
   return (
     <div className="flex justify-between  ">
       {/* Logo */}
-      <a href="/">
+      <Link to={""}>
         <img className="h-10" alt="DAVE on grey background" src={logo}></img>
-      </a>
+      </Link>
 
       <div className="flex justify-between">
-        
         {/* hidden search icon and bar*/}
         {searchOpen && (
           <div className="flex">
@@ -36,8 +36,7 @@ const trolleyQuantity =props.trolleyQuantity
                 src={search}
               ></img>
             )}
-
-            <form onSubmit={handleSearchSubmit} action="/shop">
+            <Link to={"shop"}>
               <input
                 className="h-10 border-2  border-cyan-200 bg-cyan-50"
                 type="text"
@@ -45,7 +44,7 @@ const trolleyQuantity =props.trolleyQuantity
                 onChange={typingHandler}
                 onSubmit={handleSearchSubmit}
               ></input>
-            </form>
+            </Link>
           </div>
         )}
 

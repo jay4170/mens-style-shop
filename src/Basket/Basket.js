@@ -12,7 +12,7 @@ const Basket = (props) => {
   if (isOpen) {
     if (trolley.length === 0) {
       return (
-        <div className="z-40 font-display absolute right-0 w-80 h-80 grid justify-center content-center bg-cyan-100">
+        <div className="z-40 font-display absolute right-0 w-80 h-80 grid justify-center content-center bg-slate-50">
           <h2 className="font-display text-center">
             YOUR SHOPPING BAG IS EMPTY!
           </h2>
