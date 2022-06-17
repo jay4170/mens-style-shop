@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/mens-style-shop/static/css/main.7706aba9.css",
-    "main.js": "/mens-style-shop/static/js/main.f253e112.js",
+    "main.js": "/mens-style-shop/static/js/main.4a598fdc.js",
     "static/media/pexels-mentatdgt-1336873.jpg": "/mens-style-shop/static/media/pexels-mentatdgt-1336873.399753314f508b78476b.jpg",
     "static/media/pexels-monstera-5384423.jpg": "/mens-style-shop/static/media/pexels-monstera-5384423.a08ae45a612ec6668e69.jpg",
     "static/media/gb_kids_hattiebourn1x1_15.jpg": "/mens-style-shop/static/media/gb_kids_hattiebourn1x1_15.45c2a6c86c258e98eb00.jpg",
@@ -10,10 +10,10 @@
     "static/media/Component 1 (3).png": "/mens-style-shop/static/media/Component 1 (3).27eedb52eeedb30682b9.png",
     "index.html": "/mens-style-shop/index.html",
     "main.7706aba9.css.map": "/mens-style-shop/static/css/main.7706aba9.css.map",
-    "main.f253e112.js.map": "/mens-style-shop/static/js/main.f253e112.js.map"
+    "main.4a598fdc.js.map": "/mens-style-shop/static/js/main.4a598fdc.js.map"
   },
   "entrypoints": [
     "static/css/main.7706aba9.css",
-    "static/js/main.f253e112.js"
+    "static/js/main.4a598fdc.js"
   ]
 }
