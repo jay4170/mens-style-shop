@@ -6,9 +6,9 @@ const BannerImages = (props) => {
   const height = props.height;
   return (
     <Link to="/shop">
-      <div className="relative text-center">
+      <div className="relative text-center ">
         <img src={src} className={height} alt={text} />
-        <p className="absolute font-display text-xl w-full  bottom-1 text-sky-500">
+        <p className="absolute font-display text-xl w-full lg:text-3xl bottom-1 text-white">
           {text}
         </p>
       </div>

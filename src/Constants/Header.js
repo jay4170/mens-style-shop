@@ -31,7 +31,7 @@ const Header = (props) => {
             {searchTyping === "" && (
               <img
                 onClick={handleSearchOpening}
-                className="h-10 border-solid fixed float-right"
+                className="h-10 border-solid fixed float-right "
                 alt="Search"
                 src={search}
               ></img>

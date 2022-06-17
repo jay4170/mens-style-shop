@@ -131,7 +131,7 @@ const RouteSwitch = () => {
         handleBasketIncrement={handleBasketIncrement}
         handleBasketDecrement={handleBasketDecrement}
       />
-      <div onClick={closeOpenTabs}>
+      <div onClick={closeOpenTabs} className="flex justify-center">
         <Routes>
           <Route path="" element={<HomePage />} />
           <Route
