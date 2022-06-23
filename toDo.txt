@@ -1,4 +1,0 @@
-1. Search function when submitting search
-2. Styling
-3. Links on homepage to filter search reseults on shop page
-4. Responsive design
